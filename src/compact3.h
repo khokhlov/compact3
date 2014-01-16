@@ -47,7 +47,7 @@ void step(const double la, const double dt, data_t *d, reconstruct r)
 {
 	int i;
 	int N = d->m->size;
-	double u0, u1 = d->u[N - 1], v0, v1 = d->u[N - 1], t;
+	double u0, u1 = d->u[N - 1], v0, v1 = d->v[N - 1], t;
 	double *x = d->m->x;
 	for (i = 0; i < N; i++) {
 		int i1 = ((i + N)-1) % N;

@@ -13,7 +13,7 @@ void create_simple_mesh(const int size, const double x1, const double x2, mesh_t
 	m->size = size;
 	m->x = (double*)malloc(sizeof(double) * size);
 	m->x[0] = x1;
-	double h = (x2 - x1) / (size - 1);
+	double h = (x2 - x1) / (size);
 	int i;
 	for (i = 0; i < size - 1; i++) {
 		m->x[i + 1] = m->x[i] + h;

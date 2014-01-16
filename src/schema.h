@@ -7,6 +7,10 @@
 
 typedef void (*reconstruct)(const double, const double, const double, const double, const double, const double, const double, double *, double *);
 
+void none(const double la, const double h, const double dt, const double u1, const double u0, const double v1, const double v0, double *u, double *v)
+{
+}
+
 void cir(const double la, const double h, const double dt, const double u1, const double u0, const double v1, const double v0, double *u, double *v)
 {
 	double c = la * dt / h;

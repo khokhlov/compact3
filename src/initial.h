@@ -46,4 +46,26 @@ void initial_complex(const double st, data_t *d)
 	}
 }
 
+void initial_sin4(const double st, data_t *d)
+{
+	int i;
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st;
+		double s = sin(M_PI * x);
+		d->u[i] = s * s * s * s;
+		d->v[i] = 4.0 * M_PI * s * s * s * cos(M_PI * x);
+	}
+}
+
+void initial_sin(const double st, data_t *d)
+{
+	int i;
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st;
+		d->u[i] = sin(M_PI * x);
+		d->v[i] = M_PI * cos(M_PI * x);
+	}
+}
+
+
 #endif // INITIAL_H
