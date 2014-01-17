@@ -4,7 +4,7 @@
 #include "initial.h"
 #include "norm.h"
 
-const int N = 201;
+const int N = 200;
 const double dt = 0.004;
 const int periods = 2;
 
