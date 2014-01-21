@@ -47,14 +47,22 @@ void test(const char *name, reconstruct r)
 		n *= 2;
 	}
 	printf("%s\n", name);
+	FILE *f = fopen(name, "w");
 	n = n0;
 	double t = (log(1.0 / 2.0) - log(1.0));
 	for (i = 0; i < S; i++) {
-		if (i > 0) printf("%d\t%1.16f\t%f\t%1.16f\t%f\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
-		else       printf("%d\t%1.16f\t-\t\t%1.16f\t-\n", n, err[i].l1, err[i].linf);
+		if (i > 0) {
+			printf("%d\t%1.16f\t%f\t%1.16f\t%f\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
+			fprintf(f, "%d\t%1.16f\t%f\t%1.16f\t%f\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
+		}
+		else {
+			printf("%d\t%1.16f\t-\t\t%1.16f\t-\n", n, err[i].l1, err[i].linf);
+			fprintf(f, "%d\t%1.16f\t-\t\t%1.16f\t-\n", n, err[i].l1, err[i].linf);
+		}
 		n *= 2;
 	}
 	printf("\n");
+	fclose(f);
 	free(err);
 }
 
