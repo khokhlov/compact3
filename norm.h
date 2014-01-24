@@ -13,10 +13,13 @@ double L1(data_t *d1, data_t *d2)
 	double ne = 0.0;
 	for (i = 0; i < N; i++) {
 		int i1 = ((i + N)-1) % N;
-		int i2 = ((i + N)+1) % N;
-		double dx = (d1->m->x[i2] - d1->m->x[i1]) / 2.0;
+		double h = d1->m->x[i] - d1->m->x[i1];
+		if (i == 0) {
+			h = d1->m->x[1] - d1->m->x[0];
+		}
 		//printf("%f\n", dx);
-		n += ABS(d1->u[i] - d2->u[i]);
+		n += ABS(d1->u[i] - d2->u[i]) * h;
+		ne += d2->u[i];
 	}
 	return n;
 }
@@ -33,8 +36,9 @@ double L2(data_t *d1, data_t *d2)
 		double dx = (d1->m->x[i2] - d1->m->x[i1]) / 2.0;
 		double du = d1->u[i] - d2->u[i];
 		n += du * du;
+		ne += d2->u[i];
 	}
-	return sqrt(n);
+	return sqrt(n) / ne;
 }
 
 double Linf(data_t *d1, data_t *d2)

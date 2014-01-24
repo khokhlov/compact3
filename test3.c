@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 
 #include "compact3.h"
 #include "initial.h"
@@ -7,30 +8,32 @@
 const double cfl = 0.2;
 const double T = 2.0;
 const int periods = 1;
-const int n0 = 10;
-const int S = 10;
+const int n0 = 100;
+const int S = 5;
 const int nsteps = 20000;
 
 typedef struct {
 	double l1, l2, linf;
 } err_t;
 
-void integrate(const int n, reconstruct r, data_t *d)
+void integrate(const int n, const double alpha, reconstruct r, complex_mesh_func cmf, data_t *d)
 {
 	double dt = cfl * 2.0 / n;
 	mesh_t *m = (mesh_t*)malloc(sizeof(mesh_t));
-	create_simple_mesh(n, -1.0, 1.0, m);
+	cmf(n, -1.0, 1.0, alpha, m);
 	create_mesh_data(m, d);
 	initial_sin4(0.0, d);
 	steps(T / dt, 1.0, dt, d, r);
 }
 
-void single_test(const int n, reconstruct r, err_t *err)
+void single_test(const int n, const double alpha, reconstruct r, complex_mesh_func cmf, err_t *err)
 {
 	data_t d, nd;
-	integrate(n, r, &d);
-	integrate(n, &none, &nd);
+	integrate(n, alpha, r, cmf, &d);
+	save_data("bis2.txt", &d);
+	copy_data(&d, &nd);
 	initial_sin4(T, &nd);
+	save_data("none.txt", &d);
 	err->l1 = L1(&d, &nd);
 	err->l2 = L2(&d, &nd);
 	err->linf = Linf(&d, &nd);
@@ -38,12 +41,12 @@ void single_test(const int n, reconstruct r, err_t *err)
 	free_data(&nd, 1);
 }
 
-void test(const char *name, reconstruct r)
+void test(const char *name, const double alpha, reconstruct r, complex_mesh_func cmf)
 {
 	int i, n = n0;
 	err_t *err = (err_t*)malloc(sizeof(err_t) * S);
 	for (i = 0; i < S; i++) {
-		single_test(n, r, &err[i]);
+		single_test(n, alpha, r, cmf, &err[i]);
 		n *= 2;
 	}
 	printf("%s\n", name);
@@ -68,11 +71,23 @@ void test(const char *name, reconstruct r)
 
 int main(int argc, char *argv[])
 {
-	test("cir.txt", &cir);
-	test("cip.txt", &cip);
-	test("cip2l.txt", &cip2l);
-	test("cip2r.txt", &cip2r);
-	test("bis1.txt", &bis1);
-	test("bis2.txt", &bis2);
+	srand(time(NULL));
+	int i;
+	char buf[100];
+	double a1[6] = {0.5, 1.0, 1.01, 1.05, 1.2, 1.5};
+	double a2[5] = {0.0, 0.05, 0.2, 0.35, 0.5};
+	double a3[4] = {0.01, 0.05, 0.1, 0.5};
+	for (i = 0; i < 6; i++) {
+		sprintf(buf, "case1_%f.txt", a1[i]);
+		test(buf, a1[i], &bis2, &create_mesh1);
+	}
+	for (i = 0; i < 5; i++) {
+		sprintf(buf, "case2_%f.txt", a2[i]);
+		test(buf, a2[i], &bis2, &create_mesh2);
+	}
+	for (i = 0; i < 4; i++) {
+		sprintf(buf, "case3_%f.txt", a3[i]);
+		//test(buf, a3[i], &bis2, &create_mesh3);
+	}
 	return 0;
 }

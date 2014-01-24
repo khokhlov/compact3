@@ -22,7 +22,7 @@ void test(const char *path, reconstruct r)
 	data_t d, nd;
 	integrate(r, &d);
 	integrate(&none, &nd);
-	printf("%s %f %f %f\n", path, L1(&d, &nd), L2(&d, &nd), Linf(&d, &nd));
+	printf("%s & %1.2f & %1.2f & %1.2f\\\\\n", path, L1(&d, &nd), L2(&d, &nd), Linf(&d, &nd));
 	save_data(path, &d);
 	free_data(&d, 1);
 	free_data(&nd, 1);
@@ -30,13 +30,22 @@ void test(const char *path, reconstruct r)
 
 int main(int argc, char *argv[])
 {
-	printf("path L1 L2 Linf\n");
-	test("none.txt", &none);
+	printf("\\begin{tabular}{ c c c c c c c }\n");
+	printf("& $L_1$ & $L_2$ & $L_{\\infty}$ \\\\\n");
+	printf("\\hline\n");
+
 	test("cir.txt", &cir);
+	printf("\\hline\n");
 	test("cip.txt", &cip);
+	printf("\\hline\n");
 	test("cip2l.txt", &cip2l);
+	printf("\\hline\n");
 	test("cip2r.txt", &cip2r);
+	printf("\\hline\n");
 	test("bis1.txt", &bis1);
+	printf("\\hline\n");
 	test("bis2.txt", &bis2);
+	printf("\\hline\n");
+	printf("\\end{tabular}\n");
 	return 0;
 }

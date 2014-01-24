@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "schema.h"
 #include "mesh.h"
@@ -19,6 +20,18 @@ void create_mesh_data(mesh_t *m, data_t *d)
 	d->u = (double*)calloc(m->size, sizeof(double));
 	d->v = (double*)calloc(m->size, sizeof(double));
 }
+
+void copy_data(const data_t *f, data_t *t)
+{
+	mesh_t *m = (mesh_t*)malloc(sizeof(mesh_t));
+	copy_mesh(f->m, m);
+	t->m = m;
+	t->u = (double*)calloc(m->size, sizeof(double));
+	t->v = (double*)calloc(m->size, sizeof(double));
+	memcpy(t->u, f->u, m->size * sizeof(double));
+	memcpy(t->v, f->v, m->size * sizeof(double));
+}
+
 
 void free_data(data_t *d, int free_mesh_flag)
 {
