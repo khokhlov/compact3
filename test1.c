@@ -22,7 +22,7 @@ void test(const char *path, reconstruct r)
 	data_t d, nd;
 	integrate(r, &d);
 	integrate(&none, &nd);
-	printf("%s & %1.2f & %1.2f & %1.2f\\\\\n", path, L1(&d, &nd), L2(&d, &nd), Linf(&d, &nd));
+	printf("%s & %1.3f & %1.3f & %1.3f\\\\\n", path, L1(&d, &nd), L2(&d, &nd), Linf(&d, &nd));
 	save_data(path, &d);
 	free_data(&d, 1);
 	free_data(&nd, 1);
@@ -30,6 +30,7 @@ void test(const char *path, reconstruct r)
 
 int main(int argc, char *argv[])
 {
+	test("none.txt", &none);
 	printf("\\begin{tabular}{ c c c c c c c }\n");
 	printf("& $L_1$ & $L_2$ & $L_{\\infty}$ \\\\\n");
 	printf("\\hline\n");
