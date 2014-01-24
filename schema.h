@@ -1,3 +1,5 @@
+// Author: Nikolay Khokhlov <k_h@inbox.ru>, <kolya.khokhlov@gmail.com>, (C) 2014
+
 #ifndef SCHEMA_H
 #define SCHEMA_H
 

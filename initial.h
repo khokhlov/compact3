@@ -1,3 +1,5 @@
+// Author: Nikolay Khokhlov <k_h@inbox.ru>, <kolya.khokhlov@gmail.com>, (C) 2014
+
 #ifndef INITIAL_H
 #define INITIAL_H
 

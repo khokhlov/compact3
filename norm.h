@@ -1,3 +1,5 @@
+// Author: Nikolay Khokhlov <k_h@inbox.ru>, <kolya.khokhlov@gmail.com>, (C) 2014
+
 #ifndef NORM_H
 #define NORM_H
 
