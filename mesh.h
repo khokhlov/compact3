@@ -83,7 +83,6 @@ void create_mesh3(const int size, const double x1, const double x2, const double
 		ri[i] = 1.0 + alpha * rand1();
 		r += ri[i];
 	}
-	printf("%f\n", r);
 	double h = (x2 - x1) / r;
 	for (i = 0; i < size - 1; i++) {
 		m->x[i + 1] = m->x[i] + h * ri[i];
