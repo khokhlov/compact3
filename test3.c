@@ -56,11 +56,11 @@ void test(const char *name, const double alpha, reconstruct r, complex_mesh_func
 	for (i = 0; i < S; i++) {
 		if (i > 0) {
 			printf("%d\t%1.16f\t%f\t%1.16f\t%f\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
-			fprintf(f, "%d\t%1.16f\t%f\t%1.16f\t%f\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
+			fprintf(f, "& %d & \\num{%1.2e} & %1.2f & \\num{%1.2e} & %1.2f\\\\\n", n, err[i].l1, (log(err[i].l1) - log(err[i-1].l1)) / t, err[i].linf, (log(err[i].linf) - log(err[i-1].linf)) / t);
 		}
 		else {
 			printf("%d\t%1.16f\t-\t\t%1.16f\t-\n", n, err[i].l1, err[i].linf);
-			fprintf(f, "%d\t%1.16f\t-\t\t%1.16f\t-\n", n, err[i].l1, err[i].linf);
+			fprintf(f, "%1.2f & %d & \\num{%1.2e} & - & \\num{%1.2e} & -\\\\\n", alpha, n, err[i].l1, err[i].linf);
 		}
 		n *= 2;
 	}
