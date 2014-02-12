@@ -40,7 +40,7 @@ double L2(data_t *d1, data_t *d2)
 		n += du * du;
 		ne += d2->u[i];
 	}
-	return sqrt(n) / ne;
+	return sqrt(n);
 }
 
 double Linf(data_t *d1, data_t *d2)
