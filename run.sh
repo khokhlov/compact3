@@ -11,3 +11,5 @@ gnuplot test1.gnu
 ./test3
 ./test4
 gnuplot test4.gnu
+./test1 5 > table2.tex
+gnuplot test5.gnu

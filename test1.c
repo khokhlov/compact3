@@ -8,7 +8,7 @@
 
 const int N = 200;
 const double dt = 0.004;
-const int periods = 2;
+int periods = 2;
 
 void integrate(reconstruct r, data_t *d)
 {
@@ -32,6 +32,9 @@ void test(const char *path, reconstruct r)
 
 int main(int argc, char *argv[])
 {
+	if (argc > 1) {
+		periods = atoi(argv[1]);
+	}
 	test("none.txt", &none);
 	printf("\\begin{tabular}{ c c c c c c c }\n");
 	printf("& $L_1$ & $L_2$ & $L_{\\infty}$ \\\\\n");
