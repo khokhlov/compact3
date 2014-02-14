@@ -19,13 +19,13 @@ set logscale
 
 set multiplot layout 1,2 rowsfirst
 
-set label 1 'а)' at graph 0.88,0.94 font ',16'
+set label 1 'а)' at graph 0.1,0.94 font ',16'
 plot "cir.txt" u (1/$1):2 w lp lt 1 lw 1 ti 'CIR', \
   "cip.txt" u (1/$1):2 with lp lt 7 ps 0.7 ti 'CIP', \
   "bis1.txt" u (1/$1):2 with lp lt 6 ti 'БИС1', \
   "bis2.txt" u (1/$1):2 with lp lt 4 ti 'БИС2'
 
-set label 1 'б)' at graph 0.88,0.94 font ',16'
+set label 1 'б)' at graph 0.1,0.94 font ',16'
 plot "cir.txt" u (1/$1):4 w lp lt 1 lw 1 ti 'CIR', \
   "cip.txt" u (1/$1):4 with lp lt 7 ps 0.7 ti 'CIP', \
   "bis1.txt" u (1/$1):4 with lp lt 6 ti 'БИС1', \
