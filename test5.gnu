@@ -21,11 +21,11 @@ set label 1 'б)' at graph 0.92,0.9 font ',12'
 plot "none.txt" with line lt 1 lc rgb "black" lw 1, \
 	"cip.txt" with linespoints lt -1 pi 1 pt 7 ps 0.4 lc rgb "black" lw 0
 
-set label 1 'г)' at graph 0.92,0.9 font ',12'
+set label 1 'в)' at graph 0.92,0.9 font ',12'
 plot "none.txt" with line lt 1 lc rgb "black" lw 1, \
     "bis1.txt" with linespoints lt -1 pi 1 pt 7 ps 0.4 lc rgb "black" lw 0
 
-set label 1 'д)' at graph 0.92,0.9 font ',12'
+set label 1 'г)' at graph 0.92,0.9 font ',12'
 plot "none.txt" with line lt 1 lc rgb "black" lw 1, \
     "bis2.txt" with linespoints lt -1 pi 1 pt 7 ps 0.4 lc rgb "black" lw 0
 
