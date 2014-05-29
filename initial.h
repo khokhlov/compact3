@@ -21,6 +21,20 @@ void initial_rect(const double st, data_t *d)
 	}
 }
 
+void initial_rect2(const double st, data_t *d)
+{
+	int i;
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st;
+		if (x > -0.4 && x < 0.4) {
+			d->u[i] = 1.0;
+		} else {
+			d->u[i] = 0.0;
+		}
+		d->v[i] = 0.0;
+	}
+}
+
 void initial_complex(const double st, data_t *d)
 {
 	int i;
