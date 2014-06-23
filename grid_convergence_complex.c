@@ -10,7 +10,7 @@
 #define TIME 20.0
 #endif
 
-const double cfl = 0.2;
+const double cfl = 0.4;
 const double T = TIME;
 const int n0 = 100;
 const int S = 5;
