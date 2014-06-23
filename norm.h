@@ -56,4 +56,15 @@ double Linf(data_t *d1, data_t *d2)
 	return n;
 }
 
+double TV(data_t *d)
+{
+    int i, N = d->m->size;
+    double tv = 0.0;
+    for (i = 0; i < N; i++) {
+        double du = d->u[(i + 1) % N] - d->u[i];
+        tv += ABS(du);
+    }
+    return tv;
+}
+
 #endif // NORM_H

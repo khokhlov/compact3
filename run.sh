@@ -12,6 +12,8 @@ gcc -O2 -DTIME=2000.0 grid_convergence_complex.c -o grid_convergence_complex_200
 gcc -O2 grid_convergence_rect.c -o grid_convergence_rect_20 -lm
 gcc -O2 -DTIME=2000.0 grid_convergence_rect.c -o grid_convergence_rect_2000 -lm
 
+gcc -O2 tv_norm.c -o tv_norm -lm
+
 
 ./test1 > table1.tex
 gnuplot test1.gnu
@@ -27,3 +29,5 @@ gnuplot test6.gnu
 ./grid_convergence_complex_2000
 ./grid_convergence_rect_20
 ./grid_convergence_rect_2000
+./tv_norm
+gnuplot tv_norm.gnu
