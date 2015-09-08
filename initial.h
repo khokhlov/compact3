@@ -21,6 +21,20 @@ void initial_rect(const double st, data_t *d)
 	}
 }
 
+void initial_tri(const double st, data_t *d)
+{
+	int i;
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st;
+		if (x > -0.4 && x < 0.4) {
+			d->u[i] = (x + 0.4) / 0.8;
+		} else {
+			d->u[i] = 0.0;
+		}
+		d->v[i] = 0.0;
+	}
+}
+
 void initial_rect2(const double st, data_t *d)
 {
 	int i;
@@ -34,6 +48,21 @@ void initial_rect2(const double st, data_t *d)
 		d->v[i] = 0.0;
 	}
 }
+
+void initial_rect3(const double st, data_t *d)
+{
+	int i;
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st;
+		if (x > -0.1 && x < 0.1) {
+			d->u[i] = 1.0;
+		} else {
+			d->u[i] = 0.0;
+		}
+		d->v[i] = 0.0;
+	}
+}
+
 
 void initial_complex(const double st, data_t *d)
 {
@@ -80,6 +109,17 @@ void initial_sin(const double st, data_t *d)
 		double x = d->m->x[i] - st;
 		d->u[i] = sin(M_PI * x);
 		d->v[i] = M_PI * cos(M_PI * x);
+	}
+}
+
+void initial_godunovs_parabola(const double st, data_t *d)
+{
+	int i;
+	double h = d->m->x[1] - d->m->x[0];
+	for (i = 0; i < d->m->size; i++) {
+		double x = d->m->x[i] - st - h/2;
+		d->u[i] = 4 * x * x / h - h;
+		d->v[i] = 8 * x / h;
 	}
 }
 
